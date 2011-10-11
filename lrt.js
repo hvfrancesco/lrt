@@ -38,19 +38,14 @@ lrt.start = function(){
     //add some interaction
 
 
-   	goog.events.listen(page_0.target,'dblclick',function(e){
+   	goog.events.listen(page_0.actor,'dblclick',function(e){
    		pagina += 1;
    		director.replaceScene(pages[pagina]);
    	});
 
 	goog.events.listen(page_0.target,['mousedown','touchstart'],function(e){
-        //animate	
-        page_0.target.runAction(new lime.animation.Spawn(
-            new lime.animation.FadeTo(.5).setDuration(.2),
-            new lime.animation.ScaleTo(1.5).setDuration(.8)
-        ));
-
-        page_0.title.runAction(new lime.animation.FadeTo(1));
+        //animate		
+	page_0.animate();
 
         //let target follow the mouse/finger
         e.startDrag();
@@ -78,7 +73,7 @@ lrt.start = function(){
 
 
 
-   goog.events.listen(page_1.target,'dblclick',function(e){
+   goog.events.listen(page_1.actor,'dblclick',function(e){
    pagina -= 1;
    director.replaceScene(pages[pagina]);
    });
@@ -86,12 +81,7 @@ lrt.start = function(){
 	goog.events.listen(page_1.target,['mousedown','touchstart'],function(e){
 
         //animate
-        page_1.target.runAction(new lime.animation.Spawn(
-            new lime.animation.FadeTo(.5).setDuration(.2),
-            new lime.animation.ScaleTo(1.5).setDuration(.8)
-        ));
-
-        page_1.title.runAction(new lime.animation.FadeTo(1));
+        page_1.animate();
 
         //let target follow the mouse/finger
         e.startDrag();
