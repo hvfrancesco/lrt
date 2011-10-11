@@ -63,7 +63,7 @@ lrt.start = function(){
             page_0.target.runAction(new lime.animation.Spawn(
                 new lime.animation.FadeTo(1),
                 new lime.animation.ScaleTo(1),
-                new lime.animation.MoveTo(512,384)
+                new lime.animation.MoveTo(512,420)
             ));
             page_0.title.runAction(new lime.animation.FadeTo(0));
         });
@@ -101,7 +101,7 @@ lrt.start = function(){
             page_1.target.runAction(new lime.animation.Spawn(
                 new lime.animation.FadeTo(1),
                 new lime.animation.ScaleTo(1),
-                new lime.animation.MoveTo(512,384)
+                new lime.animation.MoveTo(512,420)
             ));
 
             page_1.title.runAction(new lime.animation.FadeTo(0));
