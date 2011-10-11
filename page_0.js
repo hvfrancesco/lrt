@@ -10,19 +10,28 @@ goog.provide('lrt.page_0');
 lrt.page_0 = function() {
 	goog.base(this);
 	this.scene = new lime.Scene();
+	
+	//page background
+	this.background = new lime.Layer().setPosition(0,0);
+	this.bgImage = new lime.Sprite().setSize(1024,768).setAnchorPoint(0,0).setFill('assets/bg_0.jpg');
+	this.background.appendChild(this.bgImage);
+	
 	this.target = new lime.Layer().setPosition(512,384);
-        this.actor = new lime.Circle().setSize(150,150).setFill(255,150,0);
-        this.lbl = new lime.Label().setSize(160,50).setFontSize(30).setText('Pag. 0');
-        this.title = new lime.Label().setSize(800,70).setFontSize(60).setText('Now move me around!').setOpacity(0).setPosition(512,80).setFontColor('#999').setFill(200,100,0,.1);
+    this.actor = new lime.Circle().setSize(150,150).setFill(255,150,0);
+    this.lbl = new lime.Label().setSize(160,50).setFontSize(30).setText('Pag. 0');
+    this.title = new lime.Label().setSize(800,70).setFontSize(60).setText('Now move me around!').setOpacity(0).setPosition(512,80).setFontColor('#999').setFill(200,100,0,.1);
 
 	
-    	//add circle and label to target object
-    	this.target.appendChild(this.actor);
-    	this.target.appendChild(this.lbl);
-
-    	//add target and title to the scene
-    	this.scene.appendChild(this.target);
-    	this.scene.appendChild(this.title);
+	
+    
+    //add circle and label to target object
+    this.target.appendChild(this.actor);
+    this.target.appendChild(this.lbl);
+    
+    //add layers to the scene
+    this.scene.appendChild(this.background);
+    this.scene.appendChild(this.target);
+    this.scene.appendChild(this.title);
 
 	}
 
