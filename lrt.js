@@ -1,5 +1,5 @@
 //set main namespace
-goog.provide('test2');
+goog.provide('lrt');
 
 
 //get requirements
@@ -15,21 +15,19 @@ goog.require('lime.animation.MoveTo');
 goog.require('lime.transitions.SlideInRight');
 goog.require('lime.transitions.Dissolve');
 
-goog.require('test2.page_0');
-goog.require('test2.page_1');
+goog.require('lrt.page_0');
+goog.require('lrt.page_1');
 
 
 // entrypoint
-test2.start = function(){
+lrt.start = function(){
 
 	var pages = [];
 	var pagina = 0;
 	var director = new lime.Director(document.body,1024,768);
 	
-	//pages[pages.length] = new lime.Scene();
-	//pages[pages.length] = new lime.Scene();
-	page_0 = new test2.page_0();
-	page_1 = new test2.page_1();
+	page_0 = new lrt.page_0();
+	page_1 = new lrt.page_1();
 	pages[pages.length] = page_0.scene;
 	pages[pages.length] = page_1.scene;
 
@@ -133,4 +131,4 @@ test2.start = function(){
 
 
 //this is required for outside access after code is compiled in ADVANCED_COMPILATIONS mode
-goog.exportSymbol('test2.start', test2.start);
+goog.exportSymbol('lrt.start', lrt.start);

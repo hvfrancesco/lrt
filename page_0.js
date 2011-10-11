@@ -1,12 +1,12 @@
 //set main namespace
-goog.provide('test2.page_0');
+goog.provide('lrt.page_0');
 
-goog.require('lime.Scene');
-goog.require('lime.Circle');
-goog.require('lime.Layer');
-goog.require('lime.Label');
+//goog.require('lime.Scene');
+//goog.require('lime.Circle');
+//goog.require('lime.Layer');
+//goog.require('lime.Label');
 
-test2.page_0 = function() {
+lrt.page_0 = function() {
 	goog.base(this);
 	this.scene = new lime.Scene();
 	this.target = new lime.Layer().setPosition(512,384);
@@ -28,5 +28,5 @@ test2.page_0 = function() {
 
 	}
 
-goog.inherits(test2.page_0, lime.Scene, lime.Circle, lime.Layer, lime.Label);
+goog.inherits(lrt.page_0, lime.Scene, lime.Circle, lime.Layer, lime.Label);
 
