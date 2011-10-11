@@ -17,7 +17,7 @@ lrt.page_1 = function() {
 	this.background.appendChild(this.bgImage);
 	
 	this.target = new lime.Layer().setPosition(512,384);
-    this.actor = new lime.Circle().setSize(150,150).setFill(155,250,175);
+    this.actor = new lime.Circle().setSize(150,150).setFill(255,150,0);
     this.lbl = new lime.Label().setSize(160,50).setFontSize(30).setText('Pag. 1');
     this.title = new lime.Label().setSize(800,70).setFontSize(60).setText('Now move me around!').setOpacity(0).setPosition(512,80).setFontColor('#999').setFill(200,100,0,.1);
 
