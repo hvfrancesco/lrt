@@ -8,11 +8,6 @@ goog.provide('lrt.page_0');
 //goog.require('lime.Label');
 
 
-
-
-
-
-
 lrt.page_0 = function() {
 	goog.base(this);
 
@@ -46,12 +41,27 @@ lrt.page_0 = function() {
 	
 
 
-    goog.events.listen(this.actor,['mousedown','touchstart'],function(e){
-        //animate		
-	target.runAction(new lime.animation.Spawn(new lime.animation.FadeTo(.5).setDuration(.2), new lime.animation.ScaleTo(0.75).setDuration(.8)));
-        title.runAction(new lime.animation.FadeTo(1));
+    goog.events.listen(this.actor,['mousedown','touchstart'],this.handleMouseDown);
 
-        //let target follow the mouse/finger
+
+	}
+
+
+goog.inherits(lrt.page_0, lime.Scene, lime.Circle, lime.Layer, lime.Label, lime.animation.Spawn, lime.animation.FadeTo, lime.animation.ScaleTo);
+
+lrt.page_0.prototype.animate = function() {
+	
+	this.target.runAction(new lime.animation.Spawn(new lime.animation.FadeTo(.5).setDuration(.2), new lime.animation.ScaleTo(0.75).setDuration(.8)));
+        this.title.runAction(new lime.animation.FadeTo(1));
+
+	};
+
+lrt.page_0.prototype.handleMouseDown = function(e) {
+	//animate		
+	this.target.runAction(new lime.animation.Spawn(new lime.animation.FadeTo(.5).setDuration(.2), new lime.animation.ScaleTo(0.75).setDuration(.8)));
+        this.title.runAction(new lime.animation.FadeTo(1));
+
+	//let target follow the mouse/finger
         e.startDrag();
 	e.swallow( ['mousemove','touchmove'],function(){
 	if (this.actor.getPosition().x >= 1024) {	
@@ -73,21 +83,5 @@ lrt.page_0 = function() {
             this.title.runAction(new lime.animation.FadeTo(0));
         });
 
-
-    });
-
-
-
-
-
-	}
-
-
-goog.inherits(lrt.page_0, lime.Scene, lime.Circle, lime.Layer, lime.Label, lime.animation.Spawn, lime.animation.FadeTo, lime.animation.ScaleTo);
-
-lrt.page_0.prototype.animate = function() {
 	
-	this.target.runAction(new lime.animation.Spawn(new lime.animation.FadeTo(.5).setDuration(.2), new lime.animation.ScaleTo(0.75).setDuration(.8)));
-        this.title.runAction(new lime.animation.FadeTo(1));
-
-	}
+	};
