@@ -57,7 +57,7 @@ lrt.page_1.prototype.handleMouseDown_ = function(e) {
     that1.title.runAction(new lime.animation.FadeTo(1));
 
 	//let target follow the mouse/finger
-    e.startDrag();
+    e.startDrag(true);
 	e.swallow( ['mousemove','touchmove'],function(){
 	if (that1.target.getPosition().x >= lrt.WIDTH) {	
 		lrt.slideNextPage();				
@@ -72,8 +72,8 @@ lrt.page_1.prototype.handleMouseDown_ = function(e) {
     e.swallow(['mouseup','touchend'],function(){
         that1.target.runAction(new lime.animation.Spawn(
             new lime.animation.FadeTo(1),
-            new lime.animation.ScaleTo(1),
-            new lime.animation.MoveTo(512,420)
+            new lime.animation.ScaleTo(1)
+            //, new lime.animation.MoveTo(512,420)
         ));
         that1.title.runAction(new lime.animation.FadeTo(0));
     });

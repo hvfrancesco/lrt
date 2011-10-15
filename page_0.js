@@ -73,8 +73,8 @@ lrt.page_0.prototype.handleMouseDown_ = function(e) {
     e.swallow(['mouseup','touchend'],function(){
         that0.target.runAction(new lime.animation.Spawn(
             new lime.animation.FadeTo(1),
-            new lime.animation.ScaleTo(1),
-            new lime.animation.MoveTo(512,420)
+            new lime.animation.ScaleTo(1)
+            //,new lime.animation.MoveTo(512,420)
         ));
         that0.title.runAction(new lime.animation.FadeTo(0));
     });
