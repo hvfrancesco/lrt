@@ -1,5 +1,5 @@
 //set main namespace
-goog.provide('lrt.page_1');
+goog.provide('lrt.page_2');
 
 //goog.require('lime.Scene');
 //goog.require('lime.Circle');
@@ -7,19 +7,19 @@ goog.provide('lrt.page_1');
 //goog.require('lime.Label');
 
 
-lrt.page_1 = function() {
+lrt.page_2 = function() {
 	goog.base(this);
 	
 	this.scene = new lime.Scene();
 	
 	//page background
 	this.background = new lime.Layer().setPosition(0,0);
-	this.bgImage = new lime.Sprite().setSize(1024,768).setAnchorPoint(0,0).setFill('assets/bg_1.jpg');
+	this.bgImage = new lime.Sprite().setSize(1024,768).setAnchorPoint(0,0).setFill('assets/bg_0.jpg');
 	this.background.appendChild(this.bgImage);
 	
 	this.target = new lime.Layer().setPosition(512,420);
     this.actor = new lime.Sprite().setSize(100,250).setFill('assets/chaplin.png');
-    this.lbl = new lime.Label().setSize(160,50).setFontSize(20).setFontColor('#FFF').setText('Pag. 1');
+    this.lbl = new lime.Label().setSize(160,50).setFontSize(20).setFontColor('#FFF').setText('Pag. 2');
     this.title = new lime.Label().setSize(800,70).setFontSize(40).setFontColor('#FFF').setText('drag me to the left border').setOpacity(0).setPosition(512,80).setFill(200,100,0,.1);
 
 	
@@ -36,33 +36,33 @@ lrt.page_1 = function() {
    		lrt.goNextScene();
    	});
 
-    that1 = this;
+    that2 = this;
 
     goog.events.listen(this.target,['mousedown','touchstart'],this.handleMouseDown_);
 
 };
 
-goog.inherits(lrt.page_1, lime.Scene, lime.Circle, lime.Layer, lime.Label, lime.animation.Spawn, lime.animation.FadeTo, lime.animation.ScaleTo);
+goog.inherits(lrt.page_2, lime.Scene, lime.Circle, lime.Layer, lime.Label, lime.animation.Spawn, lime.animation.FadeTo, lime.animation.ScaleTo);
 
-lrt.page_1.prototype.animate = function() {
+lrt.page_2.prototype.animate = function() {
 	
 	this.target.runAction(new lime.animation.Spawn(new lime.animation.FadeTo(.5).setDuration(.2), new lime.animation.ScaleTo(0.75).setDuration(.8)));
     this.title.runAction(new lime.animation.FadeTo(1));
 
 };
 	
-lrt.page_1.prototype.handleMouseDown_ = function(e) {
+lrt.page_2.prototype.handleMouseDown_ = function(e) {
 	//animate		
-	that1.target.runAction(new lime.animation.Spawn(new lime.animation.FadeTo(.5).setDuration(.2), new lime.animation.ScaleTo(0.75).setDuration(.8)));
-    that1.title.runAction(new lime.animation.FadeTo(1));
+	that2.target.runAction(new lime.animation.Spawn(new lime.animation.FadeTo(.5).setDuration(.2), new lime.animation.ScaleTo(0.75).setDuration(.8)));
+    that2.title.runAction(new lime.animation.FadeTo(1));
 
 	//let target follow the mouse/finger
     e.startDrag();
 	e.swallow( ['mousemove','touchmove'],function(){
-	if (that1.target.getPosition().x >= lrt.WIDTH) {	
+	if (that2.target.getPosition().x >= lrt.WIDTH) {	
 		lrt.slideNextPage();				
 		}
-	else if (that1.target.getPosition().x <= 0) {
+	else if (that2.target.getPosition().x <= 0) {
 		lrt.slidePrevPage();		
 		}	
 
@@ -70,12 +70,12 @@ lrt.page_1.prototype.handleMouseDown_ = function(e) {
 	
     //listen for mouseup
     e.swallow(['mouseup','touchend'],function(){
-        that1.target.runAction(new lime.animation.Spawn(
+        that2.target.runAction(new lime.animation.Spawn(
             new lime.animation.FadeTo(1),
             new lime.animation.ScaleTo(1),
             new lime.animation.MoveTo(512,420)
         ));
-        that1.title.runAction(new lime.animation.FadeTo(0));
+        that2.title.runAction(new lime.animation.FadeTo(0));
     });
 
 };
