@@ -19,30 +19,35 @@ goog.require('lrt.page_0');
 goog.require('lrt.page_1');
 
 
+
+lrt.pages = [];
+lrt.currPage = 0;
+lrt.prevPage = 0;
+
+//constant iPad size
+//lrt.WIDTH = 720;
+//lrt.HEIGHT = 1004;
+lrt.WIDTH = 1024;
+lrt.HEIGHT = 768;
+
+
 // entrypoint
 lrt.start = function(){
 
-	var pages = [];
-	var pagina = 0;
-	var director = new lime.Director(document.body,1024,768);
+	lrt.director = new lime.Director(document.body,lrt.WIDTH,lrt.HEIGHT);
 	
 	page_0 = new lrt.page_0();
 	page_1 = new lrt.page_1();
-	pages[pages.length] = page_0.scene;
-	pages[pages.length] = page_1.scene;
+	lrt.pages[lrt.pages.length] = page_0.scene;
+	lrt.pages[lrt.pages.length] = page_1.scene;
 
 	
-    director.makeMobileWebAppCapable();
+    lrt.director.makeMobileWebAppCapable();
 
 
     //add some interaction
 
-
-   	goog.events.listen(page_0.actor,'dblclick',function(e){
-   		pagina += 1;
-   		director.replaceScene(pages[pagina]);
-   	});
-
+	/*
 	goog.events.listen(page_0.target,['mousedown','touchstart'],function(e){
         //animate		
 	page_0.animate();
@@ -52,8 +57,8 @@ lrt.start = function(){
 	e.swallow( ['mousemove','touchmove'],function(){
 	if (page_0.target.getPosition().x >= 1024) {
 				
-				pagina +=1;
-				director.replaceScene(pages[pagina],lime.transitions.SlideInRight);
+				lrt.currPage +=1;
+				lrt.director.replaceScene(lrt.pages[lrt.currPage],lime.transitions.SlideInRight);
 				page_1.target.setPosition(1,page_0.target.getPosition().y);				
 				}
 	});
@@ -69,14 +74,8 @@ lrt.start = function(){
         });
 
 
-    });
+    }); */
 
-
-
-   goog.events.listen(page_1.actor,'dblclick',function(e){
-   pagina -= 1;
-   director.replaceScene(pages[pagina]);
-   });
 
 	goog.events.listen(page_1.target,['mousedown','touchstart'],function(e){
 
@@ -90,8 +89,8 @@ lrt.start = function(){
 	e.swallow( ['mousemove','touchmove'] ,function(){
 	if (page_1.target.getPosition().x <= 0) {
 				
-				pagina -=1;
-				director.replaceScene(pages[pagina],lime.transitions.Dissolve,0.8);
+				lrt.currPage -=1;
+				lrt.director.replaceScene(lrt.pages[lrt.currPage],lime.transitions.Dissolve,0.8);
 				page_0.target.setPosition(1023,page_1.target.getPosition().y);				
 				}
 	});
@@ -115,8 +114,37 @@ lrt.start = function(){
 
 
 	// set current scene active
-	director.replaceScene(pages[pagina]);
+	lrt.director.replaceScene(lrt.pages[lrt.currPage]);
 
+}
+
+
+lrt.goNextScene = function() {
+	lrt.currPage += 1;
+	if (lrt.currPage >= lrt.pages.length) {lrt.currPage = 0;}
+   	lrt.director.replaceScene(lrt.pages[lrt.currPage]);
+}
+
+lrt.slideNextScene = function() {
+	lrt.prevPage = lrt.currPage;
+	lrt.currPage += 1;
+	if (lrt.currPage >= lrt.pages.length) {
+		lrt.currPage = 0;
+		lrt.prevPage = 	lrt.pages.length;
+	}
+	lrt.director.replaceScene(lrt.pages[lrt.currPage],lime.transitions.SlideInRight);
+	lrt.pages[lrt.currPage].target.setPosition(1,lrt.pages[lrt.prevPage].target.getPosition().y);	
+}
+
+lrt.slidePrevScene = function() {
+	lrt.prevPage = lrt.currPage;
+	lrt.currPage -= 1;
+	if (lrt.currPage <= 0) {
+		lrt.currPage = lrt.pages.length;
+		lrt.prevPage = 	0;
+	}
+	lrt.director.replaceScene(lrt.pages[lrt.currPage],lime.transitions.SlideInRight);
+	lrt.pages[lrt.currPage].target.setPosition(1,lrt.pages[lrt.prevPage].target.getPosition().y);	
 }
 
 

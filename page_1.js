@@ -30,6 +30,13 @@ lrt.page_1 = function() {
     this.scene.appendChild(this.background);
     this.scene.appendChild(this.target);
     this.scene.appendChild(this.title);
+
+    goog.events.listen(this.actor,'dblclick',function(e){	
+   		lrt.goNextScene();
+   	});
+
+
+
 	}
 
 goog.inherits(lrt.page_1, lime.Scene, lime.Circle, lime.Layer, lime.Label, lime.animation.Spawn, lime.animation.FadeTo, lime.animation.ScaleTo);
