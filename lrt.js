@@ -8,12 +8,17 @@ goog.require('lime.Scene');
 goog.require('lime.Layer');
 goog.require('lime.Circle');
 goog.require('lime.Label');
+goog.require('lime.Sprite');
+goog.require('lime.SpriteSheet');
 goog.require('lime.animation.Spawn');
 goog.require('lime.animation.FadeTo');
 goog.require('lime.animation.ScaleTo');
 goog.require('lime.animation.MoveTo');
 goog.require('lime.transitions.SlideInRight');
 goog.require('lime.transitions.Dissolve');
+
+goog.require('lime.parser.ZWOPTEX');
+goog.require('lime.ASSETS.walk_sheet.plist');
 
 goog.require('lrt.page_0');
 goog.require('lrt.page_1');

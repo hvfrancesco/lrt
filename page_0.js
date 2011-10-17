@@ -12,6 +12,8 @@ lrt.page_0 = function() {
 	
 	this.scene = new lime.Scene();
 	
+	var ss = new lime.SpriteSheet('assets/walk_1.png',lime.ASSETS.walk_sheet.plist,lime.parser.ZWOPTEX);
+	
 	//page background
 	this.background = new lime.Layer().setAnchorPoint(0.5,0.5).setPosition(lrt.WIDTH/2,lrt.HEIGTH/2);
 	this.bgImage = new lime.Sprite().setSize(1024,768).setAnchorPoint(0,0).setFill('assets/bg_0.jpg');
@@ -43,7 +45,7 @@ lrt.page_0 = function() {
 
 };
 
-goog.inherits(lrt.page_0, lime.Scene, lime.Circle, lime.Layer, lime.Label, lime.animation.Spawn, lime.animation.FadeTo, lime.animation.ScaleTo);
+goog.inherits(lrt.page_0, lime.Scene, lime.Circle, lime.Layer, lime.Label, lime.animation.Spawn, lime.animation.FadeTo, lime.animation.ScaleTo, lime.parser.ZWOPTEX);
 
 lrt.page_0.prototype.animate = function() {
 	
