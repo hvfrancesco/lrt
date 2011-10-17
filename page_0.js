@@ -13,7 +13,7 @@ lrt.page_0 = function() {
 	this.scene = new lime.Scene();
 	
 	//page background
-	this.background = new lime.Layer().setPosition(0,0);
+	this.background = new lime.Layer().setAnchorPoint(0.5,0.5).setPosition(lrt.WIDTH/2,lrt.HEIGTH/2);
 	this.bgImage = new lime.Sprite().setSize(1024,768).setAnchorPoint(0,0).setFill('assets/bg_0.jpg');
 	this.background.appendChild(this.bgImage);
 	
