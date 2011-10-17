@@ -14,11 +14,12 @@ goog.require('lime.animation.Spawn');
 goog.require('lime.animation.FadeTo');
 goog.require('lime.animation.ScaleTo');
 goog.require('lime.animation.MoveTo');
+goog.require('lime.animation.KeyframeAnimation');
 goog.require('lime.transitions.SlideInRight');
 goog.require('lime.transitions.Dissolve');
 
-goog.require('lime.parser.ZWOPTEX');
-goog.require('lime.ASSETS.walk_sheet.plist');
+goog.require('lime.parser.JSON');
+goog.require('lime.ASSETS.walk_sheet.json');
 
 goog.require('lrt.page_0');
 goog.require('lrt.page_1');

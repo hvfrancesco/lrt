@@ -12,7 +12,23 @@ lrt.page_0 = function() {
 	
 	this.scene = new lime.Scene();
 	
-	var ss = new lime.SpriteSheet('assets/walk_1.png',lime.ASSETS.walk_sheet.plist,lime.parser.ZWOPTEX);
+	// actor sprite anim
+	this.ss = new lime.SpriteSheet('assets/walk_1.png',lime.ASSETS.walk_sheet.json,lime.parser.JSON);
+	
+	// to right
+	this.dxAnim = new lime.animation.KeyframeAnimation();
+	this.dxAnim.delay = 2;
+    for(var i=1;i<=8;i++){
+        this.dxAnim.addFrame(this.ss.getFrame('walk_'+goog.string.padNumber(i,2)+'.png'));
+    }
+    // to left
+	this.sinAnim = new lime.animation.KeyframeAnimation();
+	this.sinAnim.delay = 2;
+    for(var i=9;i<=16;i++){
+        this.sinAnim.addFrame(this.ss.getFrame('walk_'+goog.string.padNumber(i,2)+'.png'));
+    }
+	
+	
 	
 	//page background
 	this.background = new lime.Layer().setAnchorPoint(0.5,0.5).setPosition(lrt.WIDTH/2,lrt.HEIGTH/2);
@@ -20,7 +36,7 @@ lrt.page_0 = function() {
 	this.background.appendChild(this.bgImage);
 	
 	this.target = new lime.Layer().setPosition(512,420);
-    this.actor = new lime.Sprite().setSize(100,250).setFill('assets/chaplin.png');
+    this.actor = new lime.Sprite().setSize(117,120).setFill(this.ss.getFrame('walk_01.png'));
     this.lbl = new lime.Label().setSize(160,50).setFontSize(20).setFontColor('#FFF').setText('Pag. 0');
     this.title = new lime.Label().setSize(800,70).setFontSize(40).setFontColor('#FFF').setText('drag me to the borders').setOpacity(0).setPosition(512,80).setFill(200,100,0,.1);
 	
@@ -62,6 +78,10 @@ lrt.page_0.prototype.handleMouseDown_ = function(e) {
 	//let target follow the mouse/finger
     e.startDrag(true);
 	e.swallow( ['mousemove','touchmove'],function(){
+	
+	
+    that0.actor.runAction(that0.dxAnim);
+	
 	if (that0.target.getPosition().x >= lrt.WIDTH) {	
 		lrt.slideNextPage();				
 		}
