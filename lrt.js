@@ -49,14 +49,14 @@ lrt.start = function(){
 	// set current scene active
 	lrt.director.replaceScene(lrt.pages[lrt.currPage].scene);
 
-}
+};
 
 
 lrt.goNextScene = function() {
 	lrt.currPage += 1;
 	if (lrt.currPage >= lrt.pages.length) {lrt.currPage = 0;}
    	lrt.director.replaceScene(lrt.pages[lrt.currPage].scene);
-}
+};
 
 lrt.slideNextPage = function() {
     var prevY = lrt.pages[lrt.currPage].target.getPosition().y;
@@ -66,7 +66,7 @@ lrt.slideNextPage = function() {
 	lrt.director.replaceScene(lrt.pages[lrt.currPage].scene,lime.transitions.SlideInRight);
 	lrt.pages[lrt.currPage].target.setPosition(lrt.pages[lrt.currPage].actor.getSize().width/2,prevY);
 	alert("curr "+lrt.currPage);	
-}
+};
 
 lrt.slidePrevPage = function() {
     var prevY = lrt.pages[lrt.currPage].target.getPosition().y;
@@ -76,7 +76,7 @@ lrt.slidePrevPage = function() {
 	lrt.director.replaceScene(lrt.pages[lrt.currPage].scene,lime.transitions.Dissolve,1);
 	lrt.pages[lrt.currPage].target.setPosition(lrt.WIDTH-lrt.pages[lrt.currPage].actor.getSize().width/2,prevY);
 	alert("curr "+lrt.currPage);			
-}
+};
 
 
 //this is required for outside access after code is compiled in ADVANCED_COMPILATIONS mode

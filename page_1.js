@@ -20,7 +20,7 @@ lrt.page_1 = function() {
 	this.target = new lime.Layer().setPosition(512,420);
     this.actor = new lime.Sprite().setSize(100,250).setFill('assets/chaplin.png');
     this.lbl = new lime.Label().setSize(160,50).setFontSize(20).setFontColor('#FFF').setText('Pag. 1');
-    this.title = new lime.Label().setSize(800,70).setFontSize(40).setFontColor('#FFF').setText('drag me to the left border').setOpacity(0).setPosition(512,80).setFill(200,100,0,.1);
+    this.title = new lime.Label().setSize(800,70).setFontSize(40).setFontColor('#FFF').setText('drag me to the borders').setOpacity(0).setPosition(512,80).setFill(200,100,0,.1);
 
 	
     //add circle and label to target object
