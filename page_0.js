@@ -35,19 +35,17 @@ lrt.page_0 = function() {
 	this.bgImage = new lime.Sprite().setSize(1024,768).setAnchorPoint(0,0).setFill('assets/bg_0.jpg');
 	this.background.appendChild(this.bgImage);
 	
-	this.target = new lime.Layer().setPosition(512,420);
-    this.actor = new lime.Sprite().setSize(117,120).setFill(this.ss.getFrame('walk_01.png'));
-    this.lbl = new lime.Label().setSize(160,50).setFontSize(20).setFontColor('#FFF').setText('Pag. 0');
+	this.target = new lime.Layer().setPosition(117/2,lrt.HEIGHT-170);
+	this.actorBg = new lime.Sprite().setSize(150,150).setAnchorPoint(0,0).setPosition(0,0).setFill('assets/cartone_1.png');
+    this.actor = new lime.Sprite().setSize(117,120).setAnchorPoint(0,0).setPosition(16,15).setFill(this.ss.getFrame('walk_01.png'));
     this.title = new lime.Label().setSize(800,70).setFontSize(40).setFontColor('#FFF').setText('drag me to the borders').setOpacity(0).setPosition(512,80).setFill(200,100,0,.1);
 	
-	
-	
-	this.actor.runAction(this.dxAnim);
+    this.actor.runAction(this.dxAnim);
 	this.dxAnim.stop();
 	    
-    //add circle and label to target object
+    //add sprite to target object
+	this.target.appendChild(this.actorBg);
     this.target.appendChild(this.actor);
-    this.target.appendChild(this.lbl);
     
     //add layers to the scene
     this.scene.appendChild(this.background);
@@ -59,9 +57,11 @@ lrt.page_0 = function() {
     goog.events.listen(this.actor,'dblclick',function(e){	
    		lrt.goNextScene();
    	});
+    
+    goog.events.listen(this.actor,['mousedown','touchstart'],this.hoodAnim_, false, this);
 	
     
-    goog.events.listen(this.target,['mousedown','touchstart'],this.handleMouseDown_);
+    goog.events.listen(this.target,['mousedown','touchstart'],this.handleMouseDown_, false, this);
 
 };
 
@@ -74,26 +74,34 @@ lrt.page_0.prototype.animate = function() {
 
 };
 
-lrt.page_0.prototype.handleMouseDown_ = function(e) {
-	//animate		
-	//that0.target.runAction(new lime.animation.Spawn(new lime.animation.FadeTo(.5).setDuration(.2), new lime.animation.ScaleTo(0.75).setDuration(.8)));
-    //that0.title.runAction(new lime.animation.FadeTo(1));
 
-	//let target follow the mouse/finger
+lrt.page_0.prototype.hoodAnim_ = function(e) {
+    this.dxAnim.delay = 1/8;
+    this.dxAnim.play();
+};
+
+
+
+lrt.page_0.prototype.handleMouseDown_ = function(e) {
 	
-    e.startDrag(true);
-    
-        if (!that0.dxAnim.isPlaying_) {
+	//let target follow the mouse/finger
+    /*
+    if (!that0.dxAnim.isPlaying_) {
+        
         that0.dxAnim.delay=1/8;
         that0.dxAnim.play();
         }
-   
-	e.swallow( ['mousemove','touchmove'],function(){
+	*/
+    e.startDrag(false, new goog.math.Box(lrt.HEIGHT-170,lrt.WIDTH,lrt.HEIGHT-170,0));
+    
+  
+           
+	e.swallow( ['mousemove','touchmove'],function(e){
         
-	if (that0.target.getPosition().x >= lrt.WIDTH) {	
+	if (this.getPosition().x >= lrt.WIDTH) {	
 		lrt.slideNextPage();				
 		}
-	else if (that0.target.getPosition().x <= 0) {
+	else if (this.getPosition().x <= 0) {
 		lrt.slidePrevPage();		
 		}	
 
